@@ -1,6 +1,8 @@
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/DeliveryorderItem.java
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/IndexRequest.java
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/DeliveryorderPackage.java
+/usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/EntryOrderRequest.java
+/usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/HttpUtils.java
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/App.java
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/TopCloudClient.java
 /usr/local/var/www/Qimen/GernateSign/JavaDemos/src/main/java/org/example/demo/DeliveryorderPackageMaterial.java

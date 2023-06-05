@@ -27,6 +27,10 @@ class TopLogger
         return $this->fileHandle;
     }
 
+    /**
+     * @param $logData
+     * @return void|boolean
+     */
     public function log($logData)
     {
         if ("" == $logData || array() == $logData)

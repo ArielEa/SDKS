@@ -23,7 +23,7 @@ public class GenerateSign {
     private static String SecretKey = "7e636468adb10c4840f8d88be14514e0";
     private String CustomerId = "cdkj"; // 用户customerId
     private String WarehouseCode = "chengdukuajing"; // 仓库编码
-//    private String host = "https://zhao.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
+//    private String host = "https://uitestapi.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
     private String host = "https://zhao.b2c.omnixdb.com/wms-service/openapi/db-instock-confirm";
     public String format = "json";
     public String connectTimeout;
@@ -128,6 +128,8 @@ public class GenerateSign {
         Arrays.sort(keys);
 
         // 2. 第二步，把所有参数名和参数值拼接在一起(包含body体)
+
+        //your_secretKeyapp_keyyour_appkeycustomerIdyour_customerIdformatxmlmethodyour_methodsign_methodmd5timestamp2022-08-25 15:00:00vyour_versionyour_bodyyour_secretKey
 
         String joinedParams = joinRequestParams(params, body, secretKey, keys);
 

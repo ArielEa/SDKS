@@ -29,14 +29,18 @@ public class IndexRequest {
     public void DeliveryPartsRequest() throws IOException
     {
         DeliveryorderConfirmRequest confirmRequest = new DeliveryorderConfirmRequest();
-        confirmRequest.setDeliveryorderCode("22xxxxxx8810");
-        confirmRequest.setOperatorCode("sustem");
-        confirmRequest.setWarehouseCode("warehouse");
-        confirmRequest.setOrderType("JYCK");
-        confirmRequest.setOrderConfirmTime("2022-08-25 15:00:00");
-        confirmRequest.setStatus("DELIVERED");
-        confirmRequest.setRemark("发货单确认");
-        confirmRequest.setOperatorName("System");
+
+        DeliveryorderRequest deliveryorderRequest = new DeliveryorderRequest();
+        deliveryorderRequest.setDeliveryOrderCode("22xxxxxx8810");
+        deliveryorderRequest.setOperatorCode("sustem");
+        deliveryorderRequest.setWarehouseCode("warehouse");
+        deliveryorderRequest.setOrderType("JYCK");
+        deliveryorderRequest.setOrderConfirmTime("2022-08-25 15:00:00");
+        deliveryorderRequest.setStatus("DELIVERED");
+        deliveryorderRequest.setRemark("发货单确认");
+        deliveryorderRequest.setOperatorName("System");
+
+        confirmRequest.setDeliveryOrder(deliveryorderRequest);
 
 
         DeliveryorderPackage deliveryorderPackage = new DeliveryorderPackage();
@@ -86,7 +90,7 @@ public class IndexRequest {
 
         String jsonData = JSON.toJSONString(confirmRequest);
 
-        // fixme json 签名
+//        // fixme json 签名
         String newJsonData = jsonData.replace("packageList", "package");
 
         this.body = newJsonData;
@@ -101,16 +105,20 @@ public class IndexRequest {
     {
 
         EntryOrderRequest entryOrderRequest = new EntryOrderRequest();
-        entryOrderRequest.setEntryOrderCode("E202208243549");
-        entryOrderRequest.setEntryOrderId("E202208243549");
-        entryOrderRequest.setWarehouseCode("warehouse");
-        entryOrderRequest.setOwnerCode("customerId");
-        entryOrderRequest.setEntryOrderType("DBRK"); // 调拨入库
-        entryOrderRequest.setOutBizCode("xxxxxx");
-        entryOrderRequest.setConfirmType("1");
-        entryOrderRequest.setStatus("FULFILLED");
-        entryOrderRequest.setOperateTime("2022-08-25 15:00:00");
-        entryOrderRequest.setRemark("调拨入库确认");
+
+        EntryOrder entryOrder = new EntryOrder();
+        entryOrder.setEntryOrderCode("E202208243549");
+        entryOrder.setEntryOrderId("E202208243549");
+        entryOrder.setWarehouseCode("warehouse");
+        entryOrder.setOwnerCode("customerId");
+        entryOrder.setEntryOrderType("DBRK"); // 调拨入库
+        entryOrder.setOutBizCode("xxxxxx");
+        entryOrder.setConfirmType("1");
+        entryOrder.setStatus("FULFILLED");
+        entryOrder.setOperateTime("2022-08-25 15:00:00");
+        entryOrder.setRemark("调拨入库确认");
+
+        entryOrderRequest.setEntryOrder(entryOrder);
 
         OrderLinesRequest orderLinesRequest = new OrderLinesRequest();
         orderLinesRequest.setOrderLineNo("1");

@@ -7,15 +7,17 @@ class TopCloudClient
 {
     public $appkey;
     public $secretKey;
-//    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
-    public $gatewayUrl = "https://uitestapi.b2c.omnixdb.com/wms-service/openapi/db-instock-confirm";
+    public $gatewayUrl = "https://oms.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
+//    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/declaration-fill";
+//    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/db-instock-confirm";
     public $format = "json";
     public $connectTimeout;
     public $readTimeout;
     protected $signMethod = "md5";
     protected $apiVersion = "1.0";
     public $sdkVersion = "oms-sdk-20220825";
-    public $customerid = "cdkj";
+//    public $customerid = "cdkj";
+    public $customerid = "CHENGDUKJ";
     public $body = "";
 
     public function __construct($appkey = "",$secretKey = "") {
@@ -84,7 +86,10 @@ class TopCloudClient
                 }
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
             } else {
-                $header = array("content-type: application/x-www-form-urlencoded; charset=UTF-8");
+                $header = [
+                    "content-type: application/json; charset=UTF-8",
+                    "Authentication: Test"
+                ];
                 curl_setopt($ch,CURLOPT_HTTPHEADER,$header);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $this->body);
             }
@@ -146,29 +151,39 @@ class TopCloudClient
         $sysParams["v"] = $this->apiVersion;
         $sysParams["format"] = $this->format;
         $sysParams["sign_method"] = $this->signMethod;
+//        $sysParams["method"] = 'declaration-fill';
+//        $sysParams["method"] = 'entry-order-confirm';
         $sysParams["method"] = 'delivery-confirm';
         $sysParams["timestamp"] = date("Y-m-d H:i:s");
+//        $sysParams["timestamp"] = "2022-11-07 21:13:54";
         $sysParams['customerId'] = $this->customerid;
-
         // fixme:: 获取业务参数
         $apiParams = json_decode($request, true);
 
         $this->body = $request;
+
+//        print_r( $sysParams );
 
         //系统参数放入GET请求串
         $requestUrl = $this->gatewayUrl."?";
         //签名
         $sysParams['sign'] = $this->generateSignDemo($sysParams, $this->body);
 
-        foreach ($sysParams as $sysParamKey => $sysParamValue) {
-            $requestUrl .= "$sysParamKey=" . urlencode($sysParamValue) . "&";
-        }
-        $requestUrl = substr($requestUrl, 0, -1);
+//        foreach ($sysParams as $sysParamKey => $sysParamValue) {
+////            $requestUrl .= "$sysParamKey=" . $sysParamValue . "&";
+//            $requestUrl .= "$sysParamKey=" . urlencode($sysParamValue) . "&";
+//        }
+//        $requestUrl = substr($requestUrl, 0, -1);
+
+        $requestUrl .= http_build_query($sysParams);
+
+//        print_r( $requestUrl );
+
         //发起HTTP请求
         try {
             $resp = $this->curl($requestUrl, $apiParams);
-        }
-        catch (Exception $e) {
+
+        } catch (Exception $e) {
             $this->logCommunicationError(
                 $sysParams["method"],$requestUrl,"HTTP_ERROR_" . $e->getCode(), $e->getMessage()
             );

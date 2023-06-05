@@ -4,6 +4,14 @@ import lombok.Data;
 
 @Data
 class EntryOrderRequest {
+    public EntryOrder entryOrder;
+
+    public OrderLinesListRequest orderLines;
+}
+
+@Data
+class EntryOrder
+{
     public String entryOrderCode;
 
     public String entryOrderId;
@@ -23,6 +31,4 @@ class EntryOrderRequest {
     public String operateTime;
 
     public String Remark;
-
-    public OrderLinesListRequest orderLines;
 }

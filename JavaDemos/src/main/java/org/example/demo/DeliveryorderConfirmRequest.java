@@ -8,7 +8,17 @@ import java.lang.Integer;
 @Data
 public class DeliveryorderConfirmRequest {
 
-    public String deliveryorderCode;
+    public DeliveryorderRequest deliveryOrder;
+
+    public DeliveryorderPackageListRequest packages;
+
+    public OrderLinesListRequest orderLines;
+}
+
+@Data
+class DeliveryorderRequest
+{
+    public String deliveryOrderCode;
 
     public String warehouseCode;
 
@@ -23,8 +33,4 @@ public class DeliveryorderConfirmRequest {
     public String operatorName;
 
     public String remark;
-
-    public DeliveryorderPackageListRequest packages;
-
-    public OrderLinesListRequest orderLines;
 }

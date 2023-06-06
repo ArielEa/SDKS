@@ -1,0 +1,13 @@
+{
+  "name": "files/reader",
+  "autoload": {
+    "psr-4": {
+      "": [
+        "src/"
+      ]
+    }
+  },
+  "require": {
+    "phpoffice/phpexcel": "^1.8"
+  }
+}

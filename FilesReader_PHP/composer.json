@@ -4,10 +4,13 @@
     "psr-4": {
       "": [
         "src/"
-      ]
+      ],
+      "packages\\": "packages/"
     }
   },
   "require": {
-    "phpoffice/phpexcel": "^1.8"
+    "phpoffice/phpexcel": "^1.8",
+    "guzzlehttp/guzzle": "^7.7",
+    "mustangostang/spyc": "^0.6.3"
   }
 }

@@ -5,6 +5,10 @@ parameters:
     configuration: "{"api_host":"https://openapi.kwaixiaodian.com","oauth_api":"https://openapi.kwaixiaodian.com","app_key":"ks664562423415146762","app_secret":"BGViE43M5B8RjE2BtHmp7Q","sign_secret":"63c16f1b30ab1cc1c5964288b5ca9200","message_secret":"ulAi5RKyv2zQSFzmXKqwdQ==","version":"1","sellers":{"general_sellers":{"汉高家清旗舰店":"快手汉高大贸旗舰店","BC极选":"快手BC极选","深屹美妆专营店":"快手深屹美妆专营店","欧臻廷旗舰店":"快手欧臻廷旗舰店","名亨美妆专营店":"快手名亨美妆专营店"},"cross_border_sellers":{"NEWELEMENTS美妆海外专营店":"NEWELEMENTS美妆海外专营店"},"warehouse_brand_match":[{"brand_name":["SUQQU","CHANTECAILLE","RMK","ARGENTUM"],"warehouse_code":"CNGGC01"}]}}"
     access_token: "ChFvYXV0aC5hY2Nlc3NUb2tlbhJg0P4V7XWCf8JnbV8gqUrp_2QCdbo-Z_Tv8KR1PCzpD9sS0XaxV-oM6pSxrQGc8mqoe9QS_hTceSWArnbYO_NYI3-qXfQlOvRQ6cI-UdLHIs3gAL6WJ4VzI7EyRH0YaSuyGhJ0lNpl9NtFt7jM9LzyFTTPFEciIMJSzcDYFZcZh4Pp_acZJx1BfRei3UxfugUbPTQy66G5KAUwAQ"
 
+
+routes:
+  default: "/openapi/"
+
 # 数据库只能写在这儿， 固定的， 别的地方也不去识别
 doctrine:
   dbal:

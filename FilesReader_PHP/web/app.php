@@ -11,3 +11,5 @@ header("Content-Type:text/html;charset=utf-8");
 use packages\Terminal;
 
 Terminal::terminal();
+
+Terminal::routes(Terminal::Terminal_Return_STRING);

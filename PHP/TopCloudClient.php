@@ -7,17 +7,17 @@ class TopCloudClient
 {
     public $appkey;
     public $secretKey;
-    public $gatewayUrl = "https://oms.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
+//    public $gatewayUrl = "https://oms.b2c.omnixdb.com/wms-service/openapi/delivery-confirm";
 //    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/declaration-fill";
-//    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/db-instock-confirm";
+    public $gatewayUrl = "https://zhao.b2c.omnixdb.com/wms-service/openapi/db-instock-confirm";
     public $format = "json";
     public $connectTimeout;
     public $readTimeout;
     protected $signMethod = "md5";
     protected $apiVersion = "1.0";
     public $sdkVersion = "oms-sdk-20220825";
-//    public $customerid = "cdkj";
-    public $customerid = "CHENGDUKJ";
+    public $customerid = "cdkj";
+//    public $customerid = "SHSYBS";
     public $body = "";
 
     public function __construct($appkey = "",$secretKey = "") {
@@ -140,7 +140,7 @@ class TopCloudClient
      * @return mixed
      * @throws Exception
      */
-    public function execute($request): mixed
+    public function execute($request)
     {
         if( $this->gatewayUrl == null ) {
             throw new Exception("client-check-error:Need Set gatewayUrl.");
@@ -152,8 +152,8 @@ class TopCloudClient
         $sysParams["format"] = $this->format;
         $sysParams["sign_method"] = $this->signMethod;
 //        $sysParams["method"] = 'declaration-fill';
-//        $sysParams["method"] = 'entry-order-confirm';
-        $sysParams["method"] = 'delivery-confirm';
+        $sysParams["method"] = 'entry-order-confirm';
+//        $sysParams["method"] = 'delivery-confirm';
         $sysParams["timestamp"] = date("Y-m-d H:i:s");
 //        $sysParams["timestamp"] = "2022-11-07 21:13:54";
         $sysParams['customerId'] = $this->customerid;
@@ -195,8 +195,10 @@ class TopCloudClient
         unset($fileFields);
         // todo:: 解析TOP返回结果,JSON
         $respWellFormed = false;
-        $respObject = json_decode($resp, true);
+        $respObject = json_decode($resp);
+
         if (null !== $respObject && !is_int($resp)) {
+
             $respWellFormed = true;
         } else {
             return $resp;
@@ -212,6 +214,6 @@ class TopCloudClient
         if (isset($respObject->code)) {
             $this->logCommunicationError($sysParams["method"],$requestUrl,"SYSTEM_ERROR",$resp);
         }
-        return $respObject;
+        return json_decode(json_encode($respObject), true);
     }
 }

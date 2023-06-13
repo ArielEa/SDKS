@@ -16,7 +16,7 @@ abstract class YamlContainer
 
     private static $fileSuffix = [".yaml", '.yml'];
 
-    private static $fixYamlParametersColumns = ["parameters", "doctrine", "imports"];
+    private static $fixYamlParametersColumns = ["parameters", "doctrine", "imports", "routes"];
 
     public function __construct()
     {
@@ -73,12 +73,18 @@ abstract class YamlContainer
             if (isset($data['doctrine'])) {
                 $yamlData['doctrine'] = $data['doctrine'];
             }
+            if (isset($data['routes'])) {
+                $yamlData['routes'] = $data['routes'];
+            }
         }
         if (isset($yamlData['parameters'])) {
             yamlInstances::save('parameters', $yamlData['parameters']);
         }
         if (isset($yamlData['doctrine'])) {
             yamlInstances::save('doctrine', $yamlData['doctrine']);
+        }
+        if (isset($yamlData['routes'])) {
+            yamlInstances::save('routes', $yamlData['routes']);
         }
     }
 }
